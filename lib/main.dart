@@ -11,14 +11,23 @@ class _PerguntaAppState extends State<PerguntaApp> {
     setState(() {
       _perguntaSelecionada++;
     });
-    print(_perguntaSelecionada);
   }
 
   @override
   Widget build(BuildContext context) {
     final perguntas = [
-      "Qual a sua cor favorita?",
-      "Qual o seu animal favorito?",
+      {
+        "texto": "Qual carro você prefere?",
+        "resposta": ["Supra", "GTR R34", "Lancer Evo", "WRX STI"]
+      },
+      {
+        "texto": "Qual  potência ideial?",
+        "resposta": ["350 CV", "400 CV", "250 CV", "700 CV"]
+      },
+      {
+        "texto": "Cor do carro?",
+        "resposta": ["Azul Marinho", "Vermelho", "Preto", "Branco"]
+      }
     ];
 
     return MaterialApp(
@@ -28,10 +37,10 @@ class _PerguntaAppState extends State<PerguntaApp> {
         ),
         body: Column(
           children: [
-            Questao(perguntas[_perguntaSelecionada]),
-            Resposta("Resposta 1"),
-            Resposta("Resposta 2"),
-            Resposta("Resposta 3"),
+            Questao(perguntas[_perguntaSelecionada]["texto"].toString()),
+            Resposta("Resposta 1", _responder),
+            Resposta("Resposta 2", _responder),
+            Resposta("Resposta 3", _responder),
           ],
         ),
       ),
