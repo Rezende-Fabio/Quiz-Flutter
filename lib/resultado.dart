@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class Resultado extends StatelessWidget {
   final int puntuacao;
+  final void Function() reiniciarQuestionario;
 
-  Resultado(this.puntuacao);
+  Resultado(this.puntuacao, this.reiniciarQuestionario);
 
   String get fraseResultado {
     if (puntuacao < 12) {
@@ -19,13 +20,26 @@ class Resultado extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text(
-          fraseResultado,
-          style: TextStyle(fontSize: 25),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          child: Center(
+            child: Text(
+              fraseResultado,
+              style: TextStyle(fontSize: 25),
+            ),
+          ),
         ),
-      ),
+        ElevatedButton(
+          child: Text("Reiniciar?"),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+            foregroundColor: Color.fromARGB(255, 50, 47, 213)
+          ),
+          onPressed: reiniciarQuestionario,
+        )
+      ],
     );
   }
 }
